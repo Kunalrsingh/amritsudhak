@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="account.css">
+    <title>Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin-right: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+        .logo img {
+            max-width: 100%;
+            height: auto;
+            max-height: 50px;
+        }
+        .account-info {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        #userData {
+            margin-bottom: 20px;
+        }
+        #userData p {
+            margin: 0;
+            font-size: 16px;
+        }
+        #signInPrompt {
+            margin-top: 20px;
+        }
+        #signInPrompt p {
+            font-size: 16px;
+            color: #333;
+        }
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/logo2.png" alt="Company Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/cart.html">Cart</a></li>
+                    <li><a href="/account.html">Account</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="account-info">
+            <h2>Account Information</h2>
+            <div id="userData">
+                <!-- User data will be displayed here -->
+            </div>
+            <div id="signInPrompt" style="display:none;">
+                <p>Please <a href="/login.html">Sign In</a> to view your account.</p>
+            </div>
+            <button id="logoutBtn" class="logout-btn" style="display:none;">Log Out</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: 'GET',
+                url: '/user', // Endpoint to get user data
+                success: function(response) {
+                    if (response.loggedIn) {
+                        displayUserData(response.user);
+                        $('#logoutBtn').show();
+                    } else {
+                        $('#signInPrompt').show();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('User data error:', error);
+                }
+            });
+
+            $('#logoutBtn').click(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/logout', // Endpoint to log out
+                    success: function(response) {
+                        window.location.href = '/login.html'; // Redirect to login after logout
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Sign out error:', error);
+                    }
+                });
+            });
+
+            function displayUserData(user) {
+                $('#userData').html(`
+                    <p><strong>Username:</strong> ${user.username}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                `);
+            }
+        });
+    </script>
+</body>
+</html>

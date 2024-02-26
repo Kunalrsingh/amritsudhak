@@ -1,0 +1,62 @@
+<!-- paymentForm.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    
+    <link rel="stylesheet" href="paymentStyle.css">
+</head>
+<body>
+    <div class="container">
+        <div class="slide">
+            <div class="logo">
+                <img src="images/backgrnd.png" alt="Company Logo">
+            </div>
+        </div>
+        <div class="slide">
+            <div class="payment-options">
+                <h2>Select Payment Method</h2>
+                <div class="options">
+                    <div class="option">
+                        <img src="images/netbanking1.png" alt="Net Banking" width="100">
+                        
+                        <form id="netBankingForm">
+                            <!-- Add Net Banking form fields here -->
+                            <label for="accountNumber">Account Number:</label>
+                            <input type="text" id="accountNumber" name="accountNumber" required>
+                            <!-- Add more fields as needed -->
+                            <button type="submit">Pay Now</button>
+                        </form>
+                    </div>
+                    <div class="option">
+                        <img src="images/creditcard.png" alt="Credit/Debit Card" width="100" >
+                        
+                        <form id="cardForm">
+                            <!-- Add Credit/Debit Card form fields here -->
+                            <label for="cardNumber">Card Number:</label>
+                            <input type="text" id="cardNumber" name="cardNumber" required>
+                            <!-- Add more fields as needed -->
+                            <button type="submit">Pay Now</button>
+                        </form>
+                    </div>
+                    <div class="option">
+                        <img src="images/upi.png" alt="UPI" width="100">
+                        
+                        <form id="upiForm">
+                            <!-- Add UPI form fields here -->
+                            <label for="upiId">UPI ID:</label>
+                            <input type="text" id="upiId" name="upiId" required>
+                            <!-- Add more fields as needed -->
+                            <button type="submit">Pay Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

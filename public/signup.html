@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="container">
+        <form id="signupForm">
+            <h2>Sign Up</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#signupForm').submit(function(event) {
+                event.preventDefault();
+
+                const username = $('#username').val();
+                const email = $('#email').val();
+                const password = $('#password').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/signup', // Backend route for signup
+                    data: { username: username, email: email, password: password },
+                    success: function(response) {
+                        alert('Sign up successful! Please login.');
+                        window.location.href = 'login.html';
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Signup error:', error);
+                        alert('Signup failed. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

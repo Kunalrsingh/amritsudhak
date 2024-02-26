@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="title">PRODUCT LIST</div>
+        <div class="listProduct">
+
+        </div>
+    </div>
+
+    <script>
+        let products = null;
+
+        // Fetch data from the JSON file
+        fetch('products.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                products = data;
+                addDataToHTML();
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        function addDataToHTML() {
+            // Remove default data from HTML
+            let listProductHTML = document.querySelector('.listProduct');
+            listProductHTML.innerHTML = '';
+
+            // Add new data
+            if (products !== null) {
+                products.forEach(product => {
+                    let newProduct = document.createElement('a');
+                    newProduct.href = '/detail.html?id=' + product.id;
+                    newProduct.classList.add('item');
+                    newProduct.innerHTML = 
+                        `<img src="${product.image}" alt="">
+                        <h2>${product.name}</h2>
+                        <div class="price">₹${product.price}</div>`; // Assuming the price is in Indian Rupees
+                    listProductHTML.appendChild(newProduct);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
