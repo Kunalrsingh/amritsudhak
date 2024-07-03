@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "username": "ks231",
+    "email": "ks231229@gmail.com",
+    "password": "password1"
+  },
+  {
+    "id": 2,
+    "username": "narayan",
+    "email": "ny231@gmail.com",
+    "password": "password1"
+  },
+  {
+    "id": 3,
+    "username": "nara",
+    "email": "nmy123@gmail.com",
+    "password": "password1"
+  },
+  {
+    "id": 4,
+    "username": "sara",
+    "email": "ks232@gmail.com",
+    "password": "password1"
+  },
+  {
+    "id": 5,
+    "username": "max",
+    "email": "max@gmail.com",
+    "password": "09876",
+    "cart": []
+  },
+  {
+    "id": 6,
+    "username": "mara",
+    "email": "wawem31575@stypedia.com",
+    "password": "password1",
+    "cart": []
+  },
+  {
+    "id": 7,
+    "username": "ullu",
+    "email": "ullu@12345",
+    "password": "12345",
+    "cart": []
+  }
+]

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="account.css"> <!-- Include the account styles -->
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Include the navbar from the account page -->
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/logo2.png" alt="Company Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/cart.html">Cart</a></li>
+                    <li><a href="/account.html">Account</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Continue with your login form -->
+        <form id="loginForm" action="/login" method="POST">
+            <h2>Login</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').submit(function(event) {
+                event.preventDefault();
+
+                const username = $('#username').val();
+                const password = $('#password').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/login', // Backend route for login
+                    data: { username: username, password: password },
+                    success: function(response) {
+                        // Assuming response includes a success message or token
+                        alert('Login successful!'); 
+                        window.location.href = 'index.html';
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Login error:', error);
+                        alert('Login failed. Please check your credentials.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

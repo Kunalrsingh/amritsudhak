@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Dependency directories
+node_modules/
+.bower_components/
+
+# Build output
+dist/
+build/
+
+# VS Code settings
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Other
+*.tmp
+*.swp
+*.bak
