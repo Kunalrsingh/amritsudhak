@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
-    <title>Sign Up</title>
+    <link rel="stylesheet" href="account.css"> <!-- Include the account styles -->
+    <title>Login</title>
 </head>
 <body>
     <div class="container">
+        <!-- Include the navbar from the account page -->
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/logo2.png" alt="Company Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+
         <form id="signupForm">
             <h2>Sign Up</h2>
             <label for="username">Username:</label>
@@ -22,6 +35,7 @@
             <button type="submit">Sign Up</button>
             <p>Already have an account? <a href="login.html">Login</a></p>
         </form>
+        <a href="index.html">Go to Home Page</a></p>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
