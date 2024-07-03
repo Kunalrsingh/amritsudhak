@@ -1,62 +1,105 @@
-<!-- paymentForm.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Form</title>
-    
     <link rel="stylesheet" href="paymentStyle.css">
+    <!-- Add your CSS file link here if you have one -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- Add your Font Awesome script link here if you have one -->
+    <title>Checkout Form</title>
 </head>
+
 <body>
-    <div class="container">
-        <div class="slide">
-            <div class="logo">
-                <img src="images/backgrnd.png" alt="Company Logo">
-            </div>
-        </div>
-        <div class="slide">
-            <div class="payment-options">
-                <h2>Select Payment Method</h2>
-                <div class="options">
-                    <div class="option">
-                        <img src="images/netbanking1.png" alt="Net Banking" width="100">
-                        
-                        <form id="netBankingForm">
-                            <!-- Add Net Banking form fields here -->
-                            <label for="accountNumber">Account Number:</label>
-                            <input type="text" id="accountNumber" name="accountNumber" required>
-                            <!-- Add more fields as needed -->
-                            <button type="submit">Pay Now</button>
-                        </form>
+
+    <div class="wrapper">
+        <div class="container">
+            <form id="paymentForm" action="">
+                <h1>
+                    <i class="fas fa-shipping-fast"></i>
+                    <img src="images/logo2.png" width="125px">
+                </h1>
+                <div class="name">
+                    <div>
+                        <label for="f-name">First</label>
+                        <input type="text" name="f-name" required>
                     </div>
-                    <div class="option">
-                        <img src="images/creditcard.png" alt="Credit/Debit Card" width="100" >
-                        
-                        <form id="cardForm">
-                            <!-- Add Credit/Debit Card form fields here -->
-                            <label for="cardNumber">Card Number:</label>
-                            <input type="text" id="cardNumber" name="cardNumber" required>
-                            <!-- Add more fields as needed -->
-                            <button type="submit">Pay Now</button>
-                        </form>
-                    </div>
-                    <div class="option">
-                        <img src="images/upi.png" alt="UPI" width="100">
-                        
-                        <form id="upiForm">
-                            <!-- Add UPI form fields here -->
-                            <label for="upiId">UPI ID:</label>
-                            <input type="text" id="upiId" name="upiId" required>
-                            <!-- Add more fields as needed -->
-                            <button type="submit">Pay Now</button>
-                        </form>
+                    <div>
+                        <label for="l-name">Last</label>
+                        <input type="text" name="l-name" required>
                     </div>
                 </div>
-            </div>
+                <div class="street">
+                    <label for="name">Street</label>
+                    <input type="text" name="address" required>
+                </div>
+                <div class="address-info">
+                    <div>
+                        <label for="city">City</label>
+                        <input type="text" name="city" required>
+                    </div>
+                    <div>
+                        <label for="state">State</label>
+                        <input type="text" name="state" required>
+                    </div>
+                    <div>
+                        <label for="zip">Zip</label>
+                        <input type="text" name="zip" required>
+                    </div>
+                </div>
+                <h1>
+                    <i class="far fa-credit-card"></i> Payment Information
+                </h1>
+                <div class="cc-num">
+                    <label for="card-num">Credit Card No.</label>
+                    <input type="text" name="card-num" required>
+                </div>
+                <div class="cc-info">
+                    <div>
+                        <label for="card-num">Exp</label>
+                        <input type="text" name="expire" required>
+                    </div>
+                    <div>
+                        <label for="card-num">CCV</label>
+                        <input type="text" name="security" required>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button type="submit">Purchase</button>
+                    <button type="button" onclick="window.location.href='/cart.html'">Back to cart</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function validateForm() {
+            // Simple form validation, you can customize as needed
+            const formElements = document.querySelectorAll('#paymentForm [required]');
+            for (const element of formElements) {
+                if (!element.value.trim()) {
+                    alert('Please fill in all fields.');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const purchaseForm = document.querySelector('#paymentForm');
+            purchaseForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                if (validateForm()) {
+                    // Assuming the order is successfully placed
+                    alert('Order placed successfully!');
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    </script>
+
 </body>
+
 </html>
