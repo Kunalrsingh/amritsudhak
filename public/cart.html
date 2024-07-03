@@ -1,5 +1,7 @@
+<!-- Updated Cart Page with Clear Cart functionality -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +9,7 @@
     <link rel="stylesheet" href="cart.css">
     <title>Cart</title>
 </head>
+
 <body>
     <div class="container">
         <div class="navbar">
@@ -21,7 +24,7 @@
                 </ul>
             </nav>
         </div>
-    </div> 
+    </div>
 
     <div class="container1">
         <div class="title">CHECKOUT</div>
@@ -30,7 +33,7 @@
         <button onclick="makePayment()">Make Payment</button>
         <button onclick="clearCart()">Clear Cart</button>
     </div>
-    
+
     <script>
         // Retrieve cart data from localStorage
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -68,20 +71,44 @@
         displayCart();
 
         // Function to make a payment
-        function makePayment() {
-            // Placeholder function for demonstration purposes
-            alert('Redirecting to Payment Page!'); // Replace this with your actual payment logic
+// Function to make a payment
+function makePayment() {
+    // Calculate the total price
+    let totalPrice = 0;
+    cart.forEach(item => {
+        totalPrice += item.price * item.quantity;
+    });
 
-            // After successful payment, you may want to clear the cart or redirect to a confirmation page
-            window.location.href = 'payment.html';
-            clearCart();
-        }
+    if (totalPrice > 0) {
+        // Placeholder function for demonstration purposes
+        alert('Redirecting to Payment Page!'); // Replace this with your actual payment logic
+
+        // After successful payment, you may want to clear the cart or redirect to a confirmation page
+        
+        window.location.href = 'payment.html';
+    } else {
+        // Display a message and automatically redirect to the home page
+        alert('No items added in the cart!');
+        window.location.href = 'index.html';
+    }
+}
 
         // Function to clear the cart
         function clearCart() {
             localStorage.removeItem('cart');
-            displayCart(); // Update the UI
+            
+            // Display a confirmation prompt
+            const isConfirmed = window.confirm('Cart cleared! Continue shopping?');
+
+            if (!isConfirmed) {
+                // Redirect or perform any other action based on user choice
+                window.location.href = 'index.html';
+            } else {
+                // Refresh the page after clearing the cart
+                location.reload();
+            }
         }
     </script>
 </body>
+
 </html>
